@@ -28,11 +28,11 @@ console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+      Counter 1's count variable is in the block scope and Counter 2's count variable is globally available.
   2. Which of the two uses a closure? How can you tell?
-  
-  3. In what scenario would the counter1 code be preferable? In what scenario would 
-     counter2 be better?  
+      counter1, because it is returning a function inside another function
+  3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better?
+      counter1 is preferable when you want to reuse counterMaker() it remembers how many times its been run. counter2 is preferable when you want to use the funciton only once.
 */
 
 // counter1 code
@@ -61,11 +61,13 @@ Use the inning function below to do the following:
   For example: invoking inning() should return a numerical score value of 0, 1, or 2
 */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
+function inning(placeholder){
+  let points = Math.floor(Math.random() * 3);
+  return points;
 
 }
+
+console.log(inning());
 
 /* Task 3: finalScore()
 Use the finalScore function below to do the following:
