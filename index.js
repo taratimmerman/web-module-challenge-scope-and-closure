@@ -61,7 +61,7 @@ Use the inning function below to do the following:
   For example: invoking inning() should return a numerical score value of 0, 1, or 2
 */
 
-function inning(placeholder){
+function inning(){
   let points = Math.floor(Math.random() * 3);
   return points;
 
@@ -101,16 +101,16 @@ console.log(finalScore(inning, 9));
 // the function should take the inning function as an argument 
 // it should return an object with with a score for home and a score for away that that populates from invoking the inning callback. */
 
-function getInningScore(placeholder) {
-	const away = inning();
-	const home = inning();
+function getInningScore(inningCB) {
+	const away = inningCB();
+	const home = inningCB();
 	return {
 		Home: home,
 		Away: away
 	};
 }
 
-console.log(getInningScore());
+console.log(getInningScore(inning));
 
 /* Task 5: scoreboard()
 Use the scoreboard function below to do the following:
@@ -161,19 +161,19 @@ Use the scoreboard function below to do the following:
   let away = 0;
   let home = 0;
 
-  for (let i = 1; i <= 9; i++) {
-    const currentScore = inningCB(inningNum);
-    let awayScore = away + currentScore.Away;
-    let homeScore = home + currentScore.Home;
-      if (awayScore === homeScore) {
-        inningResult.push(`This game will require extra innings: Away ${currentScore.Away} - Home ${currentScore.Home}`);
-      } else {
-        inningResult.push(`Inning ${i}: Away ${currentScore.Away} - Home ${currentScore.Home}`);
-  }
+  for (let i = 1; i <= inningNum; i++) {
+    const currentScore = getInningScoreCB(inningCB);
+    away = away + currentScore.Away;
+    home = home + currentScore.Home;
+        inningResult.push(`Inning ${i}: Away ${away} - Home ${home}`);
+    }
+ if (away === home) {
+  inningResult.push(`This game will require extra innings: Away ${currentScore.Away} - Home ${currentScore.Home}`);
+}
   return inningResult;
 }
 
-console.log(scoreboard(getInningScore, inning));
+console.log(scoreboard(getInningScore, inning, 9));
 
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
